@@ -1,9 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.security;
 
-
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,10 +20,13 @@ public class SpringSecurityConfiguration {
 		
 //		2) If a request is not authenticated, a web page is shown
 		http.httpBasic(withDefaults());
-		
+		//http.formLogin(withDefaults());
 		
 //		3) CSRF -> POST, PUT
-		http.csrf().disable();
+		http.csrf(csrf -> csrf.disable());
+		//http.csrf().disable();
+		
+		//http.headers(header -> header.frameOptions(frameOptions -> frameOptions.disable()));
 		
 		return http.build();
 	}
